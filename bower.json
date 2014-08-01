@@ -1,0 +1,26 @@
+{
+  "name": "bc",
+  "version": "0.1",
+  "authors": [
+    "Lucas Videla <videla.lucas@gmail.com>"
+  ],
+  "description": "broadcastor",
+  "main": "index.html",
+  "license": "MIT",
+  "homepage": "bc.wecode.io",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "1.2.21",
+    "foundation": "zurb/bower-foundation#~5.3.1",
+    "font-awesome": "~4.1.0",
+    "moment": "~2.8.0",
+    "angular-moment": "~0.8.0"
+  }
+}

@@ -1,0 +1,17 @@
+!!! 5
+%html{ class: "no-js", lang: "en"}
+  %head
+    %meta{ charset: "utf-8" }
+    %meta{ name: "viewport", content: "width=device-width, initial-scale=1.0" }
+    %title= BroadCastor::App.title
+    = stylesheet_tag "application"
+    = yield_content :head
+
+  %body
+    .container
+      = yield
+
+    = javascript_tag "application"
+    :javascript
+      $(document).foundation();
+    = yield_content :js
