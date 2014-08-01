@@ -17,6 +17,7 @@ namespace :db do
     Sequel::Migrator.apply(DB, migrations_dir)
   end
 
+  desc "seed the database with fixture data"
   task :seed do
     Database::Seed.execute
   end

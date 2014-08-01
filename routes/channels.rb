@@ -5,14 +5,13 @@ module BroadCastor
     class Channels < Base
 
       get "/channels/:slug.json" do
-        json posts_to_json(Post.all)
+        json posts_to_json(Post.sorted_by_date)
       end
 
       get "/channels/:slug/after/:timestamp.json" do
-        json [
-          {'timestamp' => Time.now.to_i,
-           'body' => 'The Next, Next Generation tablet 2.'}
-        ]
+        json posts_to_json(
+          Post.sorted_by_date.created_after(Time.at(params[:timestamp].to_i + 1))
+        )
       end
 
       get "/channels/:slug" do

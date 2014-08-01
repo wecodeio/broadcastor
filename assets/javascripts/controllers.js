@@ -12,19 +12,19 @@ broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
       $scope.posts = data;
     }).
     error(function(data, status, headers, config) {
-      console.log('Error loading initial data');
+      console.log('Error loading initial posts');
     });
 
   $scope.newPosts = [];
 
   $scope.peek = function () {
-    var timestamp = moment().unix();
+    var timestamp = $scope.posts.length > 0 ? $scope.posts[0].timestamp : 0;
     $http.get('/channels/' + slug + '/after/' + timestamp + '.json')
       .success(function(data, status, headers, config) {
         if (data) $scope.newPosts = data.concat($scope.newPosts);
       })
       .error(function(data, status, headers, config) {
-        console.log('Error updating data');
+        console.log('Error updating posts');
       });
   };
 
