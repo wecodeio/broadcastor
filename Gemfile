@@ -1,14 +1,18 @@
 source "https://rubygems.org"
 
+gem "dotenv"
+
 gem "pg", platforms: :ruby
 gem "jdbc-postgres", platforms: :jruby
+gem 'sequel'
+
 gem "sinatra"
+gem "sinatra-contrib"
+gem "sinatra-asset-pipeline"
 gem "haml"
 gem "puma"
-gem "sinatra-contrib"
 gem "sass"
 gem "uglifier"
-gem "sinatra-asset-pipeline"
 gem "rack-flash3"
 gem "sidekiq"
 gem "pony"

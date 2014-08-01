@@ -8,7 +8,10 @@ require "rack-flash"
 require "json"
 #require "./middleware/authentication"
 
+require_relative "../config/initializers/sequel"
+
 Dir["./helpers/*.rb"].each { |helper| require helper }
+Dir["./models/*.rb"].each { |model| require model }
 
 module BroadCastor
   module Routes
