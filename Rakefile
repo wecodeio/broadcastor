@@ -1,4 +1,5 @@
 require_relative "config/initializers/sequel"
+require_relative "tasks/db/seed"
 
 namespace :db do
   Sequel.extension(:migration)
@@ -14,6 +15,10 @@ namespace :db do
   task :reset do
     Sequel::Migrator.apply(DB, migrations_dir, 0)
     Sequel::Migrator.apply(DB, migrations_dir)
+  end
+
+  task :seed do
+    Database::Seed.execute
   end
 end
 
