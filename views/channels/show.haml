@@ -1,3 +1,4 @@
+%h1#title Title goes here!
 %div{ "ng-app" => "broadcastorApp", "ng-controller" => "ChannelCtrl"}
   %p Total number of posts: {{ posts.length }}
   %ul
@@ -12,4 +13,5 @@
 - content_for :js do
   = javascript_tag "controllers.js"
   :javascript
-    var slug = '#{slug}';
+    var channel = JSON.parse('#{channel}');
+    $("#title").html(channel.name)

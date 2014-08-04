@@ -5,30 +5,36 @@ module BroadCastor
     class Channels < Base
 
       get "/channels/:slug.json" do
-        json posts_to_json(Post.sorted_by_date)
+        channel = Channel.where(:slug => params[:slug])
+        json posts_to_json(Post.where(:channel => channel).sorted_by_date)
       end
 
       get "/channels/:slug/after/:timestamp.json" do
+        channel = Channel.where(:slug => params[:slug])
         json posts_to_json(
-          Post.sorted_by_date.created_after(Time.at(params[:timestamp].to_i + 1))
+          Post.where(:channel => channel).sorted_by_date.created_after(Time.at(params[:timestamp].to_i + 1))
         )
       end
 
       get "/channels/:slug" do
+        channel = Channel.where(:slug => params[:slug]).first
         # Get channel with this specific slug, and show it
-        haml :"channels/show", locals: { slug: params[:slug] }
+        haml :"channels/show", locals: { channel: JSON(channel_to_h(channel)) }
       end
 
       private
+
+      def channel_to_h(channel)
+        hash = channel.values.dup
+        hash.delete(:id)
+        hash
+      end
 
       def post_to_h(post)
         hash = post.values.dup
         hash.delete(:id)
         hash.delete(:created_at)
         hash.merge!(timestamp: post.created_at.to_i)
-        # sdate = report.start_date ? report.start_date.iso8601 : nil
-        # edate = report.end_date ? report.end_date.iso8601 : nil
-        # hash.merge!(start_date: sdate, end_date: edate)
       end
 
       def posts_to_json(posts)

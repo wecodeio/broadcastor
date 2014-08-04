@@ -7,7 +7,7 @@ var broadcastorApp = angular.module('broadcastorApp', ['angularMoment'])
 
 broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
 
-  $http.get('/channels/' + slug + '.json').
+  $http.get('/channels/' + channel.slug + '.json').
     success(function(data, status, headers, config) {
       $scope.posts = data;
     }).
@@ -19,7 +19,7 @@ broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
 
   $scope.peek = function () {
     var timestamp = $scope.posts.length > 0 ? $scope.posts[0].timestamp : 0;
-    $http.get('/channels/' + slug + '/after/' + timestamp + '.json')
+    $http.get('/channels/' + channel.slug + '/after/' + timestamp + '.json')
       .success(function(data, status, headers, config) {
         if (data) $scope.newPosts = data.concat($scope.newPosts);
       })
