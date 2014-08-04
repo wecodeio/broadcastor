@@ -24,6 +24,7 @@ namespace :db do
 end
 
 namespace :g do
+  desc "creates migration - e.g. rake g:migration create_model"
   task :migration, :fname do |t, args|
     args.with_defaults(fname: "new_migration")
     Dir.chdir("db/migrations") do

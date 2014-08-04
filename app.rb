@@ -9,7 +9,7 @@ module BroadCastor
     use Routes::Channels
 
     get "/" do
-      redirect "/hi"
+      redirect "/channels/example"
     end
   end
 end
