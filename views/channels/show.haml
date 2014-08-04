@@ -1,14 +1,12 @@
 %h1#title Title goes here!
 %div{ "ng-app" => "broadcastorApp", "ng-controller" => "ChannelCtrl"}
+  %button.js-update{ "ng-click" => 'update()', "ng-show" => "newPosts"}
+    update ({{ newPosts.length }})!
   %p Total number of posts: {{ posts.length }}
   %ul
     %li{ "ng-repeat" => "post in posts"}
       {{ post.body }}
       %p {{ post.timestamp | timeAgo }}
-  %button.js-peek{ "ng-click" => 'peek()'}
-    peek!
-  %button.js-update{ "ng-click" => 'update()'}
-    update ({{ newPosts.length }})!
 
 - content_for :js do
   = javascript_tag "controllers.js"

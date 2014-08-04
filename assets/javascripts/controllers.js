@@ -18,7 +18,8 @@ broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
   $scope.newPosts = [];
 
   $scope.peek = function () {
-    var timestamp = $scope.posts.length > 0 ? $scope.posts[0].timestamp : 0;
+    var timestamp = $scope.newPosts.length > 0 ? $scope.newPosts[0].timestamp :
+      $scope.posts.length > 0 ? $scope.posts[0].timestamp : 0;
     $http.get('/channels/' + channel.slug + '/after/' + timestamp + '.json')
       .success(function(data, status, headers, config) {
         if (data) $scope.newPosts = data.concat($scope.newPosts);
@@ -32,5 +33,9 @@ broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
     $scope.posts = $scope.newPosts.concat($scope.posts);
     $scope.newPosts = [];
   }
+
+  setInterval(function(){
+    $scope.peek()
+  },5000);
 
 });
