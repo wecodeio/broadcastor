@@ -8,7 +8,16 @@
     = yield_content :head
 
   %body
-    .container
+
+    %nav.top-bar
+      %ul.title-area.small-8.column.small-offset-2
+        %li.name
+          %h1
+            %a{href: "/"}
+              %i.fa.fa-comment-o
+              broad-castor
+
+    .container.small-8.column.small-offset-2
       = yield
 
     = javascript_tag "application"

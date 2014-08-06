@@ -1,0 +1,22 @@
+body {
+  background-color: #dddddd;
+}
+
+.post {
+  background-color: #fafafa;
+  margin: 1em 0;
+  padding: 1em;
+
+  blockquote {
+    border-left: 5px solid #ddd;
+    p {
+      color: #333;
+    }
+  }
+
+  footer {
+    text-align: right;
+    color: #999;
+  }
+
+}
