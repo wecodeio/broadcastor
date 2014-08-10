@@ -10,12 +10,10 @@ gem "sinatra"
 gem "sinatra-contrib"
 gem "sinatra-asset-pipeline"
 gem "haml"
-gem "puma"
+gem "thin"
 gem "sass"
 gem "uglifier"
 gem "rack-flash3"
-gem "sidekiq"
-gem "pony"
 
 group :development do
   gem "rerun"
