@@ -22,6 +22,30 @@ module BroadCastor
         haml :"channels/show", locals: { channel: JSON(channel_to_h(channel)) }
       end
 
+      connections = Hash.new(Array.new)
+      get '/channels/:slug/stream', provides: 'text/event-stream' do
+        channel = Channel.where(:slug => params[:slug]).first
+
+        stream :keep_open do |out|
+          connections[channel.id] << out
+          out.callback {
+            connections[channel.id].delete(out)
+          }
+        end
+      end
+
+      post '/channels/:channel_id/post' do
+        channel = Channel.where(:id => params[:channel_id]).first
+        post = Post.create(:body => params[:body], :created_at => Time.new.utc, :channel_id => channel.id)
+
+        connections[channel.id].each { |out|
+          out << "data:" + JSON([post_to_h(post)]) + "\n\n"
+        } if connections[channel.id]
+
+        'ok'
+      end
+
+
       private
 
       def channel_to_h(channel)
