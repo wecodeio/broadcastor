@@ -4,7 +4,7 @@ A minimalistic timeline
 
 ## Set up your development environment
 
-This application uses `bower, so you need to install vendored dependencies like this:
+This application uses `bower`, so you need to install vendored dependencies like this:
 
     $ bower install
 
