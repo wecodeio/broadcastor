@@ -3,6 +3,7 @@ require_relative "base"
 module BroadCastor
   module Routes
     class Channels < Base
+      connections = Hash.new { |h, k| h[k] = [] }
 
       get "/channels/:slug.json" do
         channel = Channel.where(:slug => params[:slug])
@@ -22,7 +23,6 @@ module BroadCastor
         haml :"channels/show", locals: { channel: JSON(channel_to_h(channel)) }
       end
 
-      connections = Hash.new(Array.new)
       get '/channels/:slug/stream', provides: 'text/event-stream' do
         channel = Channel.where(:slug => params[:slug]).first
 

@@ -1,3 +1,4 @@
 .rbenv-gemsets
 .env
 assets/vendor/*
+.sass-cache/*

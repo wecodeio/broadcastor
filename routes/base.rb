@@ -1,17 +1,15 @@
 require "sinatra/base"
+require "sinatra/content_for"
 require "sinatra/json"
+require "sinatra/asset_pipeline"
+require "rack-flash"
 require "haml"
 require "sass"
-require "sinatra/asset_pipeline"
-require "sinatra/content_for"
-require "rack-flash"
 require "json"
-#require "./middleware/authentication"
 
-require_relative "../config/initializers/sequel"
+require_relative "../models/channel"
 
 Dir["./helpers/*.rb"].each { |helper| require helper }
-Dir["./models/*.rb"].each { |model| require model }
 
 module BroadCastor
   module Routes
@@ -21,6 +19,7 @@ module BroadCastor
         enable :static, :logging if development?
       end
 
+      set :server, :thin
       set :root, File.realpath("..", File.dirname(__FILE__))
       set :public_folder, File.realpath("../public/system", File.dirname(__FILE__))
 

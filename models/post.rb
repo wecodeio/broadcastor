@@ -1,5 +1,3 @@
-require "sequel"
-
 class Post < Sequel::Model
 
   many_to_one :channel
