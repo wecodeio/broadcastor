@@ -21,5 +21,8 @@
     "foundation": "zurb/bower-foundation#~5.3.1",
     "moment": "~2.8.0",
     "angular-moment": "~0.8.0"
+  },
+  "resolutions": {
+    "moment": ">=2.0.0 <2.8.0"
   }
 }
