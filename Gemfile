@@ -13,6 +13,7 @@ gem "thin"
 gem "sass"
 gem "uglifier"
 gem "rack-flash3"
+gem "bcrypt"
 
 group :development do
   gem "rerun"

@@ -2,6 +2,7 @@ GEM
   remote: https://rubygems.org/
   specs:
     backports (3.6.0)
+    bcrypt (3.1.7)
     celluloid (0.15.2)
       timers (~> 1.1.0)
     coffee-script (2.3.0)
@@ -92,6 +93,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  bcrypt
   database_cleaner
   dotenv
   haml
