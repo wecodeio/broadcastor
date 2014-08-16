@@ -1,0 +1,3 @@
+.alert-box{ class: flash[:notice] ? "success" : "warning", data: { alert: true } }
+  = @flash
+  %a.close{ href: "#" } &times;

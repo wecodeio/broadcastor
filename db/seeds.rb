@@ -1,4 +1,7 @@
 require_relative "../models/channel"
+require_relative "../models/user"
+
+user = User.create(:username => 'delucas', :password => 'please')
 
 example_channel = Channel.create(:slug => 'example', :name => 'Example')
 now = Time.now.utc

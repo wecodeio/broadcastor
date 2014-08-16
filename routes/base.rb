@@ -31,7 +31,7 @@ module BroadCastor
 
       set :haml, format: :html5
 
-      helpers Sinatra::ContentFor
+      helpers Sinatra::ContentFor, NamedRoutes, FlashHelper
 
       enable :sessions
       set :session_secret, ENV["SESSION_SECRET"]

@@ -4,6 +4,10 @@ require "bcrypt"
 class User < Sequel::Model
   include BCrypt
 
+  def self.find_by_username(username)
+    where(:username => username).first
+  end
+
   def password
     @password ||= Password.new(password_hash)
   end

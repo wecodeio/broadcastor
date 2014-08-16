@@ -18,6 +18,7 @@
               broad-castor
 
     .container.small-8.column.small-offset-2
+      = haml :"shared/_flash" if flash?
       = yield
 
     = javascript_tag "application"
