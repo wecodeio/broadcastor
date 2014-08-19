@@ -28,6 +28,19 @@ broadcastorApp.controller('ChannelCtrl', function ($scope, $http) {
     $scope.newPosts = [];
   }
 
+  $scope.post = function() {
+    if ($scope.postBody && $scope.postBody.trim() !== ''){
+      $.ajax({
+        type: "post",
+        url: "/channels/" + channel.slug,
+        data: {
+          body: $scope.postBody.trim()
+        }
+      });
+      $scope.postBody = ''
+    }
+  }
+
   var es = new EventSource('/channels/' + channel.slug + '/stream');
   es.onmessage = function(e) {
     $scope.$apply(function () {

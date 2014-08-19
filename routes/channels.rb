@@ -5,6 +5,8 @@ module BroadCastor
     class Channels < Base
       connections = Hash.new { |h, k| h[k] = [] }
 
+      connections = Hash.new(Array.new)
+
       get "/channels/:slug.json" do
         channel = Channel.where(:slug => params[:slug])
         json posts_to_json(Post.where(:channel => channel).sorted_by_date)
@@ -15,6 +17,17 @@ module BroadCastor
         json posts_to_json(
           Post.where(:channel => channel).sorted_by_date.created_after(Time.at(params[:timestamp].to_i + 1))
         )
+      end
+
+      post '/channels/:slug' do
+        channel = Channel.where(:slug => params[:slug]).first
+        post = Post.create(:body => params[:body], :created_at => Time.new.utc, :channel_id => channel.id)
+
+        connections[channel.id].each { |out|
+          out << "data:" + JSON([post_to_h(post)]) + "\n\n"
+        } if connections[channel.id]
+
+        'ok'
       end
 
       get "/channels/:slug" do
@@ -33,18 +46,6 @@ module BroadCastor
           }
         end
       end
-
-      post '/channels/:channel_id/post' do
-        channel = Channel.where(:id => params[:channel_id]).first
-        post = Post.create(:body => params[:body], :created_at => Time.new.utc, :channel_id => channel.id)
-
-        connections[channel.id].each { |out|
-          out << "data:" + JSON([post_to_h(post)]) + "\n\n"
-        } if connections[channel.id]
-
-        'ok'
-      end
-
 
       private
 

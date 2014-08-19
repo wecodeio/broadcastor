@@ -1,8 +1,15 @@
 %h1#title Title goes here!
 %div{ "ng-app" => "broadcastorApp", "ng-controller" => "ChannelCtrl"}
 
+  .row.post-form
+    .small-10.columns
+      %textarea{:rows => 4, "ng-model" => 'postBody'}
+    .small-2.columns
+      %button{:type => 'button', "ng-click" => 'post()', "ng-disabled" => '!postBody'}
+        Publicar
+
   .small-8.small-offset-2
-    %button.expand.js-update{ "ng-click" => 'update()', "ng-show" => 'newPosts'}
+    %button.expand{ "ng-click" => 'update()', "ng-show" => 'newPosts'}
       Actualizar publicaciones ({{ newPosts.length }} nueva{{ newPosts.length | pluralize }})
 
   %section.posts
@@ -17,4 +24,4 @@
   = javascript_tag "controllers.js"
   :javascript
     var channel = JSON.parse('#{channel}');
-    $("#title").html(channel.name)
+    $("#title").html(channel.name);
