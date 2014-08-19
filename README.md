@@ -19,3 +19,7 @@ You'll also need to set up the database:
     $ sudo -u postgres createdb --owner broadcastor broadcastor_development
     $ rake db:migrate
     $ rake db:seed
+
+Finally, fire up the development server:
+
+    $ SQL=true rerun -- rackup

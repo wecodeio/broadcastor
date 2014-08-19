@@ -1,3 +1,5 @@
 require "./app"
 
-run Rack::URLMap.new("/" => BroadCastor::App)
+map "/" do
+  run BroadCastor::App
+end

@@ -20,6 +20,7 @@ GEM
       tilt
     hike (1.2.3)
     json (1.8.1)
+    libv8 (3.16.14.3)
     listen (2.7.9)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
@@ -40,6 +41,7 @@ GEM
     rb-fsevent (0.9.4)
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
+    ref (1.0.5)
     rerun (0.10.0)
       listen (~> 2.7, >= 2.7.3)
     sass (3.3.14)
@@ -73,6 +75,9 @@ GEM
     sprockets-sass (1.2.0)
       sprockets (~> 2.0)
       tilt (~> 1.1)
+    therubyracer (0.12.1)
+      libv8 (~> 3.16.14.0)
+      ref
     thin (1.6.2)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -90,7 +95,6 @@ DEPENDENCIES
   database_cleaner
   dotenv
   haml
-  jdbc-postgres
   minitest
   minitest-line
   pg
@@ -102,5 +106,6 @@ DEPENDENCIES
   sinatra
   sinatra-asset-pipeline
   sinatra-contrib
+  therubyracer
   thin
   uglifier

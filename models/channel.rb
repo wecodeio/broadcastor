@@ -1,4 +1,5 @@
-require "sequel"
+require_relative "../config/initializers/sequel"
+require_relative "post"
 
 class Channel < Sequel::Model
 

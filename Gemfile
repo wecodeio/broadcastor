@@ -2,9 +2,8 @@ source "https://rubygems.org"
 
 gem "dotenv"
 
-gem "pg", platforms: :ruby
-gem "jdbc-postgres", platforms: :jruby
-gem 'sequel'
+gem "pg"
+gem "sequel"
 
 gem "sinatra"
 gem "sinatra-contrib"
@@ -27,6 +26,5 @@ group :test do
 end
 
 group :production do
-  # gem "therubyracer", platforms: :ruby
-  # gem "therubyrhino", platforms: :jruby
+  gem "therubyracer", platforms: :ruby
 end
