@@ -5,18 +5,9 @@ module BroadCastor
     class Channels < Base
       connections = Hash.new { |h, k| h[k] = [] }
 
-      connections = Hash.new(Array.new)
-
       get "/channels/:slug.json" do
         channel = Channel.where(:slug => params[:slug])
         json posts_to_json(Post.where(:channel => channel).sorted_by_date)
-      end
-
-      get "/channels/:slug/after/:timestamp.json" do
-        channel = Channel.where(:slug => params[:slug])
-        json posts_to_json(
-          Post.where(:channel => channel).sorted_by_date.created_after(Time.at(params[:timestamp].to_i + 1))
-        )
       end
 
       post '/channels/:slug' do
