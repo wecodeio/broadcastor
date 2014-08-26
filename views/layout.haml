@@ -16,6 +16,7 @@
             %a{href: "/"}
               %i.fa.fa-comment-o
               broad-castor
+      = haml :"_logout" if current_user
 
     .container.small-8.column.small-offset-2
       = haml :"shared/_flash" if flash?

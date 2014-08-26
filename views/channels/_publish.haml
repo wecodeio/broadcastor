@@ -1,0 +1,6 @@
+.row.post-form
+  .small-10.columns
+    %textarea{:rows => 4, "ng-model" => 'postBody'}
+  .small-2.columns
+    %button{:type => 'button', "ng-click" => 'post()', "ng-disabled" => '!postBody'}
+      Publicar

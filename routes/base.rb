@@ -6,6 +6,7 @@ require "rack-flash"
 require "haml"
 require "sass"
 require "json"
+require "./middleware/authentication"
 
 require_relative "../models/channel"
 
@@ -36,6 +37,18 @@ module BroadCastor
       enable :sessions
       set :session_secret, ENV["SESSION_SECRET"]
       use Rack::Flash, sweep: true
+
+      use Middleware::Authentication
+
+      protected
+
+      def current_user
+        unless instance_variable_defined?(:@current_user)
+          @current_user = request.env["current_user"]
+        end
+        @current_user
+      end
+
     end
   end
 end

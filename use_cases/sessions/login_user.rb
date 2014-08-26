@@ -1,3 +1,5 @@
+require_relative '../../models/user'
+
 module Sessions
   class LoginUser
     def initialize(username)

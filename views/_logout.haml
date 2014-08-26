@@ -1,0 +1,7 @@
+%section.top-bar-section
+  / Right Nav Section
+  %ul.right
+    %li
+      %form.logout-form{ action: session_path, method: "post" }
+        %input{ type: "hidden", name: "_method", value: "delete" }
+      %a.js-logout Logout
